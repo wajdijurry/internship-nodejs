@@ -1,0 +1,20 @@
+version: '3.0'
+services:
+  expressjs:
+    build:
+      context: .
+    ports:
+    - 3000:3000
+    networks:
+      internship-network:
+        ipv4_address: 173.20.128.2
+    command: npm start
+    volumes:
+    - .:/app
+    - /app/node_modules
+
+networks:
+  internship-network:
+    ipam:
+      config:
+        - subnet: 173.20.0.0/16
