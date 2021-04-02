@@ -12,6 +12,22 @@ services:
     volumes:
     - .:/app
     - /app/node_modules
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:4.2
+    networks:
+      internship-network:
+        ipv4_address: 173.20.128.1
+    environment:
+      MONGO_INITDB_DATABASE: mongo
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - 27017:27017
+    volumes:
+      - ./storage/database:/data/db
 
 networks:
   internship-network:

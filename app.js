@@ -1,9 +1,11 @@
+var config = require('./config/config');
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/');
+const mongoose = require('mongoose');
 
 var app = express();
 
@@ -28,6 +30,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+connect();
 
 // error handlers
 
@@ -52,6 +55,20 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+function connect() {
+  mongoose.connection
+    .on('error', console.log)
+    .on('disconnected', connect);
+  return mongoose.connect(config.db.uri, {
+    keepAlive: 1,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    user: config.db.user,
+    pass: config.db.pass,
+    authSource: config.db.dbName
+  });
+}
 
 module.exports = app;
 
