@@ -13,7 +13,8 @@ module.exports = {
                     throw error;
                 }
                 channel.assertQueue('', {
-                    exclusive: true
+                    exclusive: true,
+                    autoDelete: false,
                 }, function(error1, q) {
                     if (error1) {
                         throw error1;
