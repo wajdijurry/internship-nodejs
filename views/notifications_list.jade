@@ -3,7 +3,7 @@ extends layout
 block content
     h1.mt-5 Notifications list
     if (notifications_list.length)
-        ul 
+        ul
         each notification in notifications_list
             li='User Id: ' + notification.userId + ', Post Id: ' + notification.postId + ', Created at: ' + notification.createdAt
     else

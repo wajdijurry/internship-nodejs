@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-var notifications_controller = require('../controllers/notificationsController');
+var notificationsController = require('../controllers/notificationsController');
+var postsController = require('../controllers/postsController');
 
 router.get('/', function(req, res){
   res.render('index', {
@@ -9,9 +10,12 @@ router.get('/', function(req, res){
   });
 });
 
-router.get('/notifications', notifications_controller.notifications_list);
+// Notifications routes
+router.get('/notifications', notificationsController.notifications_list);
+router.get('/notifications/save', notificationsController.save_notification);
 
-router.get('/notifications/save', notifications_controller.save_notification);
+// Posts routes
+router.get('/posts', postsController.posts_list);
 
 module.exports = router;
 

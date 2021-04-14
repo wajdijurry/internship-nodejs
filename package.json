@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "amqp.node.client": "^1.1.5",
     "body-parser": "1.15.1",
     "cookie-parser": "1.4.3",
     "debug": "2.2.0",
